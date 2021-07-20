@@ -6,15 +6,14 @@ import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.awt.Point;
 
-
 import javax.swing.JPanel;
 
+/**
+ * Class representing the player & its functionality in GridGambit.
+ */
 public class Player extends JPanel {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+    // private static final long serialVersionUID = 1L;
 
     /**
      * A Point object representing the player's x and y coordinates relative to the grid.
