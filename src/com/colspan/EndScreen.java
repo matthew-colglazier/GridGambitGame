@@ -2,7 +2,14 @@ package com.colspan;
 
 import java.awt.*;
 
+/**
+ * Class representing the End Screen of the GridGambit game.
+ */
 public class EndScreen {
+
+    /**
+     * An int representing the default font size for this screen.
+     */
     private static int fontSize = 30;
 
     /**
