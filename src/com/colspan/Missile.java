@@ -22,14 +22,14 @@ public class Missile {
         if (targetX <= 0) {
             targetX = 1;
         }
-        if (targetX >= Grid.width - 1) {
-            targetX = Grid.width - 2;
+        if (targetX >= Grid.numBoardCols - 1) {
+            targetX = Grid.numBoardCols - 2;
         }
         if (targetY <= 0) {
             targetY = 1;
         }
-        if (targetY >= Grid.height - 1) {
-            targetY = Grid.height - 2;
+        if (targetY >= Grid.numBoardRows - 1) {
+            targetY = Grid.numBoardRows - 2;
         }
         screenSide = rand.nextInt(4);
 
@@ -42,12 +42,12 @@ public class Missile {
         }
         else if (screenSide == 1) {
             startX = targetX;
-            startY = Grid.height - 2; //need to clarify height/width to x/y correspondence
+            startY = Grid.numBoardRows - 2; //need to clarify height/width to x/y correspondence
             xUpdate = 0;
             yUpdate = -1;
         }
         else if (screenSide == 2) {
-            startX = Grid.width - 2;
+            startX = Grid.numBoardCols - 2;
             startY = targetY;
             xUpdate = -1;
             yUpdate = 0;

@@ -72,11 +72,11 @@ public class Player extends JPanel {
         if (this.pos.y < 0) {
             this.pos.y = 0;
         }
-        if (this.pos.x >= Grid.height) {
-            this.pos.x = Grid.height - 1;
+        if (this.pos.x >= Grid.numBoardRows) {
+            this.pos.x = Grid.numBoardRows - 1;
         }
-        if (this.pos.y >= Grid.width) {
-            this.pos.y = Grid.width - 1;
+        if (this.pos.y >= Grid.numBoardCols) {
+            this.pos.y = Grid.numBoardCols - 1;
         }
 
         // Checks whether the player is standing on a death space.

@@ -5,21 +5,27 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Grid extends JPanel implements ActionListener, KeyListener{
+
+    /**
+     *
+     */
+    private static int fontSize = 30;
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    public static int height = 20;
-    public static int width = 20;
+    public static int numBoardRows = 20;
+    public static int numBoardCols = 20;
     public static int MENU_SIZE = 100;
 
-    private final int DELAY = 25;
+    private final int DELAY = 50; // 20 ticks per second
     static int SQUARE_SIZE = 25;
     static final int NUM_LEVELS = 3;
     static final int LEVEL_INFO_LEN = 4;
     static final int NUM_MISSILES = 5;
     private Timer timer;
-    public static int board[][] = new int[height][width];
+    public static int board[][] = new int[numBoardRows][numBoardCols];
     private Player player;
 
     public static int level = 0;
@@ -32,7 +38,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener{
     public boolean keyActivated = false;
 
     public Grid() {
-        setPreferredSize(new Dimension(SQUARE_SIZE * height, SQUARE_SIZE * width + MENU_SIZE));
+        setPreferredSize(new Dimension(SQUARE_SIZE * numBoardRows, SQUARE_SIZE * numBoardCols + MENU_SIZE));
         initLevelinfo();
         player = new Player();
         setBackground(new Color(250, 250, 250));
@@ -72,9 +78,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener{
     }
 
     public void resetBoard() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (i == 0 || i == height - 1 || j == 0 || j == width - 1) {
+        for (int i = 0; i < numBoardRows; i++) {
+            for (int j = 0; j < numBoardCols; j++) {
+                if (i == 0 || i == numBoardRows - 1 || j == 0 || j == numBoardCols - 1) {
                     board[i][j] = 1;
                 }
                 else {
@@ -171,10 +177,10 @@ public class Grid extends JPanel implements ActionListener, KeyListener{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (level == 0) {
-            Gui.drawStartScreen(g);
+            StartScreen.drawStartScreen(g);
         }
         else if (level == 4) {
-            Gui.drawEndScreen(g);
+            EndScreen.drawEndScreen(g);
         }
         else {
             drawBackground(g);
@@ -208,12 +214,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener{
                 }
             }
         }
-        String keyTimerMsg = "Time untill key = " + String.valueOf(java.lang.Math.max(0, levelInfo[level][3] - keyTimer));
+        String keyTimerMsg = "Seconds until key = " +
+            String.valueOf(Math.max(0, levelInfo[level][3] - keyTimer) / 20);
         String levelMsg = "Level = " + String.valueOf(level);;
-        g.setFont(new Font("Monospaced"	, Font.PLAIN, Gui.fontSize));
+        g.setFont(new Font("Monospaced"	, Font.PLAIN, fontSize));
         g.setColor(new Color(0, 0, 0));
-        g.drawString(levelMsg, width * SQUARE_SIZE/3, height * SQUARE_SIZE + MENU_SIZE/3);
-        g.drawString(keyTimerMsg, width * SQUARE_SIZE/6, height * SQUARE_SIZE + 2 * MENU_SIZE/3);
+        g.drawString(levelMsg, numBoardCols * SQUARE_SIZE/3, numBoardRows * SQUARE_SIZE + MENU_SIZE/3);
+        g.drawString(keyTimerMsg, numBoardCols * SQUARE_SIZE/6, numBoardRows * SQUARE_SIZE + 2 * MENU_SIZE/3);
     }
 
 }
