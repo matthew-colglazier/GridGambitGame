@@ -109,7 +109,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener{
             if (player.dead) {
                 int endMissileIdx = java.lang.Math.min(NUM_MISSILES - 1, numMissilesCreated - 1);
                 for (int i = 0; i < endMissileIdx; i++) {
-                    currMissiles[i].delete();
+                    currMissiles[i].deleteTrail();
                 }
                 initLevel();
             }
@@ -123,7 +123,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener{
                 for (int i = 0; i < endMissileIdx; i++){
                     currMissiles[i].update();
                     if (currMissiles[i].complete) {
-                        currMissiles[i].decay();
+                        currMissiles[i].decayTrail();
                     }
                 }
             }
@@ -135,7 +135,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener{
             if (fireTimer > levelInfo[Grid.level][2]) {
                 if (numMissilesCreated != currMissileIdx) {
                     if (!currMissiles[currMissileIdx].deleted) {
-                        currMissiles[currMissileIdx].delete();
+                        currMissiles[currMissileIdx].deleteTrail();
                     }
                 }
                 currMissiles[currMissileIdx] = new Missile(player.pos.x, player.pos.y);
